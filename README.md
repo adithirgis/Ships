@@ -2,6 +2,9 @@
 
 
 ```{r}
+# For styling used 
+styler::style_file()
+# Session details
 sessionInfo()
 
 R version 4.0.5 (2021-03-31)
