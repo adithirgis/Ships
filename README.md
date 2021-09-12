@@ -1,5 +1,7 @@
 # Ships
-Data Description - 
+
+
+## Data Description 
 
 The data provided was in `.csv` format which was converted into `.RData` file for faster processing. The data was also cleaned using `janitor::clean_names()`. 
 
@@ -43,6 +45,8 @@ The data provided was in `.csv` format which was converted into `.RData` file fo
 
 `Is_parked` - indicator whether the ship is moving or not 
 
+
+## Session Information and packages used
 
 ```{r}
 # For styling used 
