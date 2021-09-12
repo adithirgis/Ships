@@ -1,4 +1,7 @@
 # Ships
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/adithirgis/Ships/workflows/R-CMD-check/badge.svg)](https://github.com/adithirgis/Ships/actions)
+<!-- badges: end -->
 
 Data Description - 
 
