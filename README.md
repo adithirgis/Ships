@@ -8,24 +8,43 @@ Data Description -
 The data provided was in `.csv` format which was converted into `.RData` file for faster processing. The data was also cleaned using `janitor::clean_names()`. 
 
 `LAT` - ship's latitude
+
 `LON` - ship's longitude
+
 `SPEED` - ship's speed in knots
+
 `COURSE` - ship's course as angle
+
 `HEADING` - ship's compass direction
+
 `DESTINATION` - ship's destination (reported by the crew)
+
 `FLAG` - ship's flag
+
 `LENGTH` - ship's length in meters
+
 `SHIPNAME` - ship's name
+
 `SHIPTYPE` - ship's type
+
 `SHIP_ID` - ship's unique identifier
+
 `WIDTH` - ship's width in meters
+
 `DWT` - ship's deadweight in tones
+
 `DATETIME` - date and time of the observation
+
 `PORT` - current port reported by the vessel
+
 `Date` - date extracted from DATETIME
+
 `Week_nb` - week number extracted from date
+
 `Ship_type` - ship's type from SHIPTYPE
+
 `Port` - current port assigned based on the ship's location
+
 `Is_parked` - indicator whether the ship is moving or not 
 
 
