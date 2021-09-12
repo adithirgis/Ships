@@ -94,7 +94,7 @@ loaded via a namespace (and not attached):
 [81] rsconnect_0.8.16  tinytex_0.31      ellipsis_0.3.1    here_1.0.1  
 
 
-# Using The law of haversines for calculating the shortest distance between two points in degrees and to convert it into distance in meters
+# Using law of haversines for calculating the shortest distance between two points in degrees and to convert it into distance in meters
   shortest_distance_measure <- function(start_lat, start_long, end_lat, end_long) {
     RadE <- 6378.137 # radius of earth in km
     diff_lat_rad <- end_lat * pi / 180 - start_lat * pi / 180 
