@@ -5,6 +5,7 @@ Data Description -
 The data provided was in `.csv` format which was converted into `.RData` file for faster processing. The data was also cleaned using `janitor::clean_names()`. 
 
 `LAT` - ship's latitude
+
 `LON` - ship's longitude
 `SPEED` - ship's speed in knots
 `COURSE` - ship's course as angle
