@@ -1,9 +1,35 @@
 # Ships
 
+Data Description - 
+
+The data provided was in `.csv` format which was converted into `.RData` file for faster processing. The data was also cleaned using `janitor::clean_names()`. 
+
+`LAT` - ship's latitude
+`LON` - ship's longitude
+`SPEED` - ship's speed in knots
+`COURSE` - ship's course as angle
+`HEADING` - ship's compass direction
+`DESTINATION` - ship's destination (reported by the crew)
+`FLAG` - ship's flag
+`LENGTH` - ship's length in meters
+`SHIPNAME` - ship's name
+`SHIPTYPE` - ship's type
+`SHIP_ID` - ship's unique identifier
+`WIDTH` - ship's width in meters
+`DWT` - ship's deadweight in tones
+`DATETIME` - date and time of the observation
+`PORT` - current port reported by the vessel
+`Date` - date extracted from DATETIME
+`Week_nb` - week number extracted from date
+`Ship_type` - ship's type from SHIPTYPE
+`Port` - current port assigned based on the ship's location
+`Is_parked` - indicator whether the ship is moving or not 
+
 
 ```{r}
 # For styling used 
 styler::style_file()
+
 # Session details
 sessionInfo()
 
@@ -49,4 +75,16 @@ loaded via a namespace (and not attached):
 [77] mime_0.10         xtable_1.8-4      broom_0.7.6       later_1.1.0.1    
 [81] rsconnect_0.8.16  tinytex_0.31      ellipsis_0.3.1    here_1.0.1  
 
+
+# Using The law of haversines for calculating the shortest distance between two points in degrees and to convert it into distance in meters
+  shortest_distance_measure <- function(start_lat, start_long, end_lat, end_long) {
+    RadE <- 6378.137 # radius of earth in km
+    diff_lat_rad <- end_lat * pi / 180 - start_lat * pi / 180 
+    diff_lon_rad <- end_long * pi / 180 - start_long * pi / 180 
+    a <- sin(diff_lat_rad / 2) * sin(diff_lat_rad / 2) +
+      cos(start_lat * pi / 180) * cos(end_lat * pi / 180) *
+        sin(diff_lon_rad / 2) * sin(diff_lon_rad / 2)
+    cir <- 2 * atan2(sqrt(a), sqrt(1 - a))
+    dist_m <- (RadE * cir) * 1000
+  }
 ```
