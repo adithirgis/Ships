@@ -45,6 +45,7 @@ The data provided was in `.csv` format which was converted into `.RData` file fo
 
 `Is_parked` - indicator whether the ship is moving or not 
 
+- 1 knot = 0.514 m/s
 
 ## Session Information and packages used
 
