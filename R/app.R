@@ -113,13 +113,14 @@ dropdown_module_server <- function(id, data) {
       )
     })
 
-    # Render table of longest observation
+    # Render table of longest travelled observation
     output$ship_longest_obs <- renderDataTable({
       ships_distance_obs()
     })
   })
 }
 
+# Define the app
 ui <- semanticPage(
   title = "Ship's App",
   dropdown_module_ui("Ship_type"),
