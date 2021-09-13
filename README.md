@@ -1,5 +1,8 @@
 # Ships
 
+## App deployed 
+
+https://aruapps.shinyapps.io/ships/
 
 ## Data Description 
 
