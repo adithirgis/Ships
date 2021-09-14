@@ -4,7 +4,7 @@ library(tidyverse)
 library(leaflet)
 # path of data stored
 ships_path <- reactive({
-  here::here("R/data/", "ships.RData")
+  here::here("data/", "ships.RData")
 })
 # Load the data
 load_ships_data <- reactive({
@@ -15,18 +15,33 @@ load_ships_data <- reactive({
 # dropdown module
 # UI for the module
 dropdown_module_ui <- function(id) {
-  fluidRow(
-    column(1, selectizeInput(NS(id, "Ship_type"),
-      label = "Select vessel type",
-      choices = "Select"
-    )),
-    column(1, selectizeInput(NS(id, "Ship_name"),
-      label = "Select vessel name",
-      choices = "Select"
-    )),
-    column(1, leafletOutput(NS(id, "ship_map"))),
-    column(1, verbatimTextOutput(NS(id, "distance_m"))),
-    column(1, dataTableOutput(NS(id, "ship_longest_obs")))
+  sidebar_layout(
+    sidebar_panel(
+      width = 1,
+      selectizeInput(NS(id, "Ship_type"),
+        width = "300px",
+        label = "Select vessel type",
+        choices = "Select"
+      ),
+      selectizeInput(NS(id, "Ship_name"),
+        width = "300px",
+        label = "Select vessel name",
+        choices = "Select"
+      )
+    ),
+    main_panel(
+      width = 3,
+      leafletOutput(NS(id, "ship_map")),
+      verbatimTextOutput(NS(id, "distance_m")),
+      dataTableOutput(NS(id, "ship_longest_obs"))
+    ),
+    min_height = "400px",
+    mirrored = FALSE,
+    container_style = "background-color: white smoke;",
+    area_styles = list(
+      sidebar_panel = "border: 1px solid black;",
+      main_panel = "border: 1px solid black;"
+    )
   )
 }
 
@@ -45,7 +60,7 @@ dropdown_module_server <- function(id, data) {
     observeEvent(input$Ship_type, {
       updateSelectizeInput(session, "Ship_name", choices = unique(names_ship_name()$shipname))
     })
-    
+
     # How to measure distance between two points
     shortest_distance_measure <- function(start_lat, start_long, end_lat, end_long) {
       RadE <- 6378.137 # radius of earth in km
@@ -114,14 +129,24 @@ dropdown_module_server <- function(id, data) {
     })
 
     # Render table of longest travelled observation
-    output$ship_longest_obs <- renderDataTable({
-      ships_distance_obs()
-    })
+    output$ship_longest_obs <- renderDataTable(
+      {
+        ships_distance_obs()
+      },
+      options = list(
+        editable = FALSE,
+        autoWidth = TRUE,
+        dom = "t",
+        columnDefs = list(list(width = "200px", targets = "_all")),
+        scrollX = TRUE
+      )
+    )
   })
 }
 
 # Define the app
 ui <- semanticPage(
+  h1("Port and Ships"),
   title = "Ship's App",
   dropdown_module_ui("Ship_type"),
   theme = "flatly"
