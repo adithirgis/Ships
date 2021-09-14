@@ -33,6 +33,7 @@ dropdown_module_ui <- function(id) {
       width = 3,
       leafletOutput(NS(id, "ship_map")),
       verbatimTextOutput(NS(id, "distance_m")),
+      h5("The observation in which the ship travelled the maximum between two consecutive points is shown below."),
       dataTableOutput(NS(id, "ship_longest_obs"))
     ),
     min_height = "400px",
@@ -146,7 +147,7 @@ dropdown_module_server <- function(id, data) {
 
 # Define the app
 ui <- semanticPage(
-  h1("Port and Ships"),
+  h1("Ships"),
   title = "Ship's App",
   dropdown_module_ui("Ship_type"),
   theme = "flatly"
